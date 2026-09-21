@@ -1,0 +1,77 @@
+schema_version: 1
+
+context:
+  name: mplcairo
+  version: "0.6.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/mplcairo-${{ version }}.tar.gz
+  sha256: eac1d408cf4101db0ab4d0d57e6c3840bd5434818dc6cd295fc923062f9180d5
+
+build:
+  number: 4
+  skip: win
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - pybind11 >=2.8.0
+        - cairo
+        - pycairo >=1.16.0
+        - expat
+        - freetype
+        - glib
+        - zlib
+    - if: linux and build_platform != target_platform
+      then: xorg-xorgproto
+    - ${{ stdlib('c') }}
+    - ${{ compiler('cxx') }}
+    - pkg-config
+  host:
+    - python
+    - setuptools >=62
+    - setuptools-scm >=6.2
+    - pybind11 >=2.8.0
+    - cairo
+    - pycairo >=1.16.0
+    - pip
+    # the following are needed to find cairo with pkg-config
+    - expat
+    - freetype
+    - glib
+    - zlib
+    - if: linux
+      then: xorg-xorgproto
+  run:
+    - python
+    - matplotlib-base >=2.2
+    - pillow
+    - cairo
+    - pycairo >=1.16.0
+
+tests:
+  - python:
+      imports:
+        - mplcairo
+      pip_check: true
+
+about:
+  summary: A (new) cairo backend for Matplotlib.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/matplotlib/mplcairo
+  repository: https://github.com/matplotlib/mplcairo
+  documentation: https://github.com/matplotlib/mplcairo/blob/main/README.rst
+
+extra:
+  recipe-maintainers:
+    - andrewdnolan
+    - xylar
