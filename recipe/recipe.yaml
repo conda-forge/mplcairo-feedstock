@@ -13,7 +13,7 @@ source:
   sha256: eac1d408cf4101db0ab4d0d57e6c3840bd5434818dc6cd295fc923062f9180d5
 
 build:
-  number: 4
+  number: 5
   skip: win
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -30,8 +30,8 @@ requirements:
         - freetype
         - glib
         - zlib
-    - if: linux and build_platform != target_platform
-      then: xorg-xorgproto
+        - if: linux
+          then: xorg-xorgproto
     - ${{ stdlib('c') }}
     - ${{ compiler('cxx') }}
     - pkg-config
