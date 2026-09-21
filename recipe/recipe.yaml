@@ -32,6 +32,8 @@ requirements:
     - if: build_platform != target_platform
       then: expat
     - if: build_platform != target_platform
+      then: freetype
+    - if: build_platform != target_platform
       then: glib
     - if: build_platform != target_platform
       then: zlib
@@ -50,6 +52,7 @@ requirements:
     - pip
     # the following are needed to find cairo with pkg-config
     - expat
+    - freetype
     - glib
     - zlib
     - if: linux
