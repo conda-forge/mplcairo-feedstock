@@ -20,23 +20,16 @@ build:
 requirements:
   build:
     - if: build_platform != target_platform
-      then: python
-    - if: build_platform != target_platform
-      then: cross-python_${{ target_platform }}
-    - if: build_platform != target_platform
-      then: pybind11 >=2.8.0
-    - if: build_platform != target_platform
-      then: cairo
-    - if: build_platform != target_platform
-      then: pycairo >=1.16.0
-    - if: build_platform != target_platform
-      then: expat
-    - if: build_platform != target_platform
-      then: freetype
-    - if: build_platform != target_platform
-      then: glib
-    - if: build_platform != target_platform
-      then: zlib
+      then:
+        - python
+        - cross-python_${{ target_platform }}
+        - pybind11 >=2.8.0
+        - cairo
+        - pycairo >=1.16.0
+        - expat
+        - freetype
+        - glib
+        - zlib
     - if: linux and build_platform != target_platform
       then: xorg-xorgproto
     - ${{ stdlib('c') }}
