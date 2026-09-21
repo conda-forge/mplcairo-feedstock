@@ -26,7 +26,7 @@ requirements:
     - if: build_platform != target_platform
       then: pybind11 >=2.8.0
     - if: build_platform != target_platform
-      then: cairo >=1.13.1
+      then: cairo
     - if: build_platform != target_platform
       then: pycairo >=1.16.0
     - if: build_platform != target_platform
@@ -45,8 +45,7 @@ requirements:
     - setuptools >=62
     - setuptools-scm >=6.2
     - pybind11 >=2.8.0
-    # MIN_CAIRO_VERSION in setup.py
-    - cairo >=1.13.1
+    - cairo
     - pycairo >=1.16.0
     - pip
     # the following are needed to find cairo with pkg-config
@@ -59,8 +58,7 @@ requirements:
     - python
     - matplotlib-base >=2.2
     - pillow
-    # MIN_CAIRO_VERSION in setup.py
-    - cairo >=1.13.1
+    - cairo
     - pycairo >=1.16.0
 
 tests:
